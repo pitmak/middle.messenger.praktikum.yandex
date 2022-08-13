@@ -2,7 +2,7 @@
   "name": "middle.messenger.praktikum.yandex",
   "version": "1.0.0",
   "description": "my first project in Yandex Practicum",
-  "main": "index.js",
+  "main": "index.html",
   "scripts": {
     "dev": "parcel index.hbs",
     "build": "parcel build index.hbs",
