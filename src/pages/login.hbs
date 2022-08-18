@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Login Page</title>
+    <link rel="stylesheet" href="~/src/index.scss">
 </head>
 <body>
 <div>
+    <form class="form">
     <p>Вход</p>
-    {{> input placeholder="Логин"}}
-    {{> input placeholder="Пароль"}}
-    {{> button title="Авторизоваться"}}
+    {{> input name="login" label="Логин"}}
+    {{> input name="password" label="Пароль"}}
+    {{> button title="Войти"}}
     <a href="#">Нет аккаунта?</a>
+    </form>
 </div>
 </body>
 </html>

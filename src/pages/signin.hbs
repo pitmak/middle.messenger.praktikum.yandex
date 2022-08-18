@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Signin Page</title>
+    <link rel="stylesheet" href="~/src/index.scss">
 </head>
 <body>
 <div>
+    <form class="form">
     <p>Регистрация</p>
-    {{> input placeholder="Почта" }}
-    {{> input placeholder="Логин" }}
-    {{> input placeholder="Имя" }}
-    {{> input placeholder="Фамилия" }}
-    {{> input placeholder="Телефон" }}
-    {{> input placeholder="Пароль" }}
-    {{> input placeholder="Пароль (еще раз)" }}
+    {{> input name="email" label="Почта" }}
+    {{> input name="login" label="Логин" }}
+    {{> input name="first_name" label="Имя" }}
+    {{> input name="second_name" label="Фамилия" }}
+    {{> input name="phone" label="Телефон" }}
+    {{> input name="password" label="Пароль" }}
+    {{> input label="Пароль (еще раз)" }}
     {{> button title="Зарегистрироваться" }}
     <a href="#">Войти</a>
+    </form>
 </div>
 </body>
 </html>
