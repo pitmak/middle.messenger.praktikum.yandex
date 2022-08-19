@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="~/src/index.scss">
 </head>
 <body>
-<div>
+<div class="app">
     <form class="form">
-    <p>Вход</p>
-    {{> input name="login" label="Логин"}}
-    {{> input name="password" label="Пароль"}}
-    {{> button title="Войти"}}
-    <a href="#">Нет аккаунта?</a>
+        <h1>Вход</h1>
+        {{> input name="login" label="Логин"}}
+        {{> input name="password" label="Пароль"}}
+        {{> button title="Войти"}}
+        <a href="#">Нет аккаунта?</a>
     </form>
 </div>
 </body>

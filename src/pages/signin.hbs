@@ -6,18 +6,18 @@
     <link rel="stylesheet" href="~/src/index.scss">
 </head>
 <body>
-<div>
+<div class="app">
     <form class="form">
-    <p>Регистрация</p>
-    {{> input name="email" label="Почта" }}
-    {{> input name="login" label="Логин" }}
-    {{> input name="first_name" label="Имя" }}
-    {{> input name="second_name" label="Фамилия" }}
-    {{> input name="phone" label="Телефон" }}
-    {{> input name="password" label="Пароль" }}
-    {{> input label="Пароль (еще раз)" }}
-    {{> button title="Зарегистрироваться" }}
-    <a href="#">Войти</a>
+        <h1>Регистрация</h1>
+        {{> input name="email" label="Почта" }}
+        {{> input name="login" label="Логин" }}
+        {{> input name="first_name" label="Имя" }}
+        {{> input name="second_name" label="Фамилия" }}
+        {{> input name="phone" label="Телефон" }}
+        {{> input name="password" label="Пароль" }}
+        {{> input label="Пароль (еще раз)" }}
+        {{> button title="Зарегистрироваться" }}
+        <a href="#">Войти</a>
     </form>
 </div>
 </body>

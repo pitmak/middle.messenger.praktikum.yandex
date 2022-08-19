@@ -1,44 +1,55 @@
+@import url("./partials/button.scss");
+@import url("./partials/input.scss");
+@import url("./partials/linput.scss");
+
 body {
   width: 100vw;
   height: 100vh;
   margin: 0;
+  font: 13px/1.5 sans-serif;
+}
 
-  font: 18px/1.5 sans-serif;
-
-  background-color: #0093e9;
-  background-image: linear-gradient(160deg, #0093e9 0%, #80d0c7 100%);
+.app {
+  display: flex;
+  width: 100%;
+  height: 100%;
 }
 
 .form {
+  display: flex;
+  flex-direction: column;
   box-sizing: border-box;
-  width: 500px;
-  padding: 30px 80px;
-
+  padding: 30px;
+  margin: auto;
   background: #fff;
-
-  border-radius: 7px;
+  align-items: center;
+  border-radius: 12px;
+  box-shadow: 0px 0px 6px 0px #00000024;
 }
 
-.btn {
-  padding: 15px 30px;
-
-  font-weight: bold;
-
-  border: none;
-
-  cursor: pointer;
+.form > * {
+  margin: 10px;
 }
 
-.btn-green {
-  color: #fff;
+.underlined {
+  border-bottom: 1px solid #3369F3;
+}
 
-  background: #4caf50;
+.text {
+  color: #1E1E1E;
+}
+
+.fs40px {
+  font-size: 40px;
+}
+
+.fs20px {
+  font-size: 20px;
 }
 
 .block-center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-
-  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  align-items: center;
 }
