@@ -1,0 +1,31 @@
+{
+  "name": "middle.messenger.praktikum.yandex",
+  "version": "1.0.0",
+  "description": "my first project in Yandex Practicum",
+  "scripts": {
+    "dev": "parcel src/index.hbs --port 3000",
+    "build": "parcel build src/index.hbs",
+    "start": "npm run build && node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pitmak/middle.messenger.praktikum.yandex.git"
+  },
+  "author": "pitmak",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pitmak/middle.messenger.praktikum.yandex/issues"
+  },
+  "homepage": "https://github.com/pitmak/middle.messenger.praktikum.yandex#readme",
+  "devDependencies": {
+    "@anikin/parcel-transformer-handlebars": "^1.0.9",
+    "@parcel/transformer-sass": "^2.7.0",
+    "parcel": "^2.7.0"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}

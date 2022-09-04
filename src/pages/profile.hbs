@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="~/src/index.scss">
+</head>
+<body>
+<div class="app">
+    <form class="form">
+        <img src="~/src/img/noavatar.png">
+        {{> linput label="Почта" name="email" placeholder="pochta@yandex.ru" }}
+        {{> linput label="Логин" name="login" placeholder="ivanovivan" }}
+        {{> linput label="Имя" name="first_name" placeholder="Иван" }}
+        {{> linput label="Фамилия" name="second_name" placeholder="Иванов" }}
+        {{> linput label="Имя в чате" name="display_name" placeholder="Иван" }}
+        {{> linput label="Телефон" name="phone" placeholder="+7 (909) 967 30 30" }}
+        <input name="avatar" style="display: none;">
+        <input name="oldPassword" style="display: none;">
+        <input name="newPassword" style="display: none;">
+        <a href="#">Изменить данные</a>
+        <a href="#">Изменить пароль</a>
+        <a href="#">Выйти</a>
+    </form>
+</div>
+</body>
+</html>
