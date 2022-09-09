@@ -2,6 +2,7 @@
   "name": "middle.messenger.praktikum.yandex",
   "version": "1.0.0",
   "description": "my first project in Yandex Practicum",
+  "type": "module",
   "scripts": {
     "dev": "parcel src/index.html --port 3000",
     "build": "parcel build src/index.html",
