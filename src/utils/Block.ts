@@ -20,17 +20,10 @@ class Block<P extends Record<string, any> = any> {
 
   private _element: HTMLElement | null = null;
 
-  private _meta: { tagName: string; props: P; };
-
   constructor(propsWithChildren: P) {
     const eventBus = new EventBus();
 
     const { props, children } = this._getChildrenAndProps(propsWithChildren);
-
-    this._meta = {
-      tagName: '',
-      props: props as P,
-    };
 
     this.children = children;
     this.props = this._makePropsProxy(props);
@@ -100,9 +93,8 @@ class Block<P extends Record<string, any> = any> {
     }
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   protected componentDidUpdate(oldProps: P, newProps: P) {
-    return true;
+    return oldProps !== newProps;
   }
 
   public setProps = (nextProps: P) => {
