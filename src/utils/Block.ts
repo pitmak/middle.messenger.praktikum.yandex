@@ -72,13 +72,14 @@ class Block<P extends Record<string, any> = any> {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
-  // eslint-disable-next-line class-methods-use-this
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   protected init() {}
 
   private _componentDidMount() {
     this.componentDidMount();
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   protected componentDidMount() {}
 
   public dispatchComponentDidMount() {
@@ -155,6 +156,7 @@ class Block<P extends Record<string, any> = any> {
   }
 
   private _makePropsProxy(props: any) {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     const self = this;
 
     return new Proxy(props, {
