@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "my first project in Yandex Practicum",
   "scripts": {
-    "dev": "parcel src/index.hbs --port 3000",
-    "build": "parcel build src/index.hbs",
+    "dev": "parcel src/index.html --port 3000",
+    "build": "parcel build src/index.html",
     "start": "npm run build && node server.js"
   },
   "repository": {
@@ -18,14 +18,24 @@
   },
   "homepage": "https://github.com/pitmak/middle.messenger.praktikum.yandex#readme",
   "devDependencies": {
-    "@anikin/parcel-transformer-handlebars": "^1.0.9",
+    "@anikin/parcel-transformer-handlebars-precompile": "^1.0.1",
     "@parcel/transformer-sass": "^2.7.0",
-    "parcel": "^2.7.0"
-  },
-  "engines": {
-    "node": ">=12.0.0"
+    "@typescript-eslint/eslint-plugin": "^5.36.2",
+    "@typescript-eslint/parser": "^5.36.2",
+    "eslint": "8.22.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "parcel": "^2.7.0",
+    "stylelint": "^14.11.0",
+    "stylelint-config-standard": "^28.0.0",
+    "stylelint-config-standard-scss": "^5.0.0",
+    "typescript": "^4.8.2"
   },
   "dependencies": {
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "handlebars": "^4.7.7",
+    "nanoid": "^4.0.0"
   }
 }
