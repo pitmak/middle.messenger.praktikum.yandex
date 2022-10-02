@@ -2,7 +2,6 @@ export enum Method {
   Get = 'Get',
   Post = 'Post',
   Put = 'Put',
-  // Patch = 'Patch',
   Delete = 'Delete',
 }
 
@@ -36,13 +35,6 @@ export default class HTTPTransport {
       data,
     });
   }
-
-  // public patch<Response = void>(path: string, data: unknown): Promise<Response> {
-  //   return this.request<Response>(this.endpoint + path, {
-  //     method: Method.Patch,
-  //     data,
-  //   });
-  // }
 
   public delete<Response>(path: string, data: unknown): Promise<Response> {
     return this.request<Response>(this.endpoint + path, {

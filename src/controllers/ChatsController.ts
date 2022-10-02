@@ -1,7 +1,7 @@
 import API, {ChatsAPI} from '../api/ChatsAPI';
 import store from '../utils/Store';
-import MessagesController from "./MessagesController";
-import UserController from "./UserController";
+import MessagesController from './MessagesController';
+import UserController from './UserController';
 
 export class ChatsController {
   private readonly api: ChatsAPI;
@@ -112,8 +112,9 @@ export class ChatsController {
     }
   }
 
-  selectChat(id: number) {
-    store.set('selectedChat', id);
+  selectChat(chatId: number) {
+    store.set('selectedChat', chatId);
+    this.getUsers(chatId);
   }
 }
 

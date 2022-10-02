@@ -80,6 +80,7 @@ class MessagesController {
 
   private onClose(id: number) {
     this.sockets.delete(id);
+    store.set(`messages.${id}`, []);
   }
 
   private subscribe(transport: WSTransport, id: number) {

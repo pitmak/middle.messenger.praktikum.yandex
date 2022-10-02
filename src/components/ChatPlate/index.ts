@@ -1,9 +1,9 @@
 import Block from '../../utils/Block';
 import template from './chatPlate.hbs';
 import * as styles from './chatPlate.module.scss';
-import ButtonRound from "../ButtonRound";
-import {Chat} from "../../api/ChatsAPI";
-import {withStore} from "../../utils/Store";
+import ButtonRound from '../ButtonRound';
+import {Chat} from '../../api/ChatsAPI';
+import {withStore} from '../../utils/Store';
 
 interface ChatPlateProps {
   id: number;
@@ -39,6 +39,7 @@ class ChatPlateBase extends Block<ChatPlateProps> {
     });
   }
 }
+
 export const withSelectedChat = withStore((state) => ({selectedChat: (state.chats || []).find(({id}) => id === state.selectedChat)}));
 
 export const ChatPlate = withSelectedChat(ChatPlateBase);

@@ -4,7 +4,7 @@ import Block from './Block';
 import {User} from '../api/AuthAPI';
 import {Chat} from '../api/ChatsAPI';
 import img from '../img/noavatar.png';
-import {Message} from "../controllers/MessagesController";
+import {Message} from '../controllers/MessagesController';
 
 export enum StoreEvents {
   Updated = 'updated'
@@ -54,10 +54,6 @@ export function withStore<SP extends Record<string, any>>(mapStateToProps: (stat
 
         store.on(StoreEvents.Updated, () => {
           const stateProps = mapStateToProps(store.getState());
-
-          // if (isEqual(previousState, stateProps)) {
-          //   return;
-          // }
 
           previousState = stateProps;
 

@@ -3,7 +3,6 @@ import Button from '../../components/Button';
 import img from '../../img/noavatar.png';
 import * as styles from './profile.module.scss';
 import AuthController from '../../controllers/AuthController';
-import {withStore} from '../../utils/Store';
 import UserController from "../../controllers/UserController";
 import Link from '../../components/Link';
 import Router, {Routes} from '../../utils/Router';
@@ -11,6 +10,7 @@ import Block from '../../utils/Block';
 import {User} from '../../api/AuthAPI';
 import Avatar from '../../components/Avatar/avatar';
 import {isEqual} from '../../utils/Helpers';
+import {withUser} from '../../hocs/withUser';
 
 class ProfilePageBase extends Block<User> {
   init() {
@@ -56,8 +56,11 @@ class ProfilePageBase extends Block<User> {
     avatar.accept = 'image/*';
 
     avatar.onchange = (e) => {
-      formData.append('avatar', (e.target as HTMLInputElement).files![0]);
-      UserController.avatar(formData);
+      const files = (e.target as HTMLInputElement).files;
+      if (files) {
+        formData.append('avatar', files[0]);
+        UserController.avatar(formData);
+      }
     }
 
     avatar.click();
@@ -75,7 +78,5 @@ class ProfilePageBase extends Block<User> {
     return this.compile(template, {...this.props, styles, img});
   }
 }
-
-const withUser = withStore((state) => ({...state.user}));
 
 export const ProfilePage = withUser(ProfilePageBase);

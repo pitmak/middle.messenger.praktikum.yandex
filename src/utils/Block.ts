@@ -1,6 +1,6 @@
 import {nanoid} from 'nanoid';
 import EventBus from './EventBus';
-import {isEqual} from "./Helpers";
+import {isEqual} from './Helpers';
 
 class Block<P extends Record<string, any> = any> {
   static EVENTS = {
@@ -107,7 +107,6 @@ class Block<P extends Record<string, any> = any> {
 
   protected componentDidUpdate(oldProps: P, newProps: P) {
     return !isEqual(oldProps, newProps);
-    // return oldProps !== newProps;
   }
 
   public setProps = (nextProps: Partial<P>) => {

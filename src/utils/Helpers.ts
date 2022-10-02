@@ -54,8 +54,6 @@ function isArrayOrObject(value: unknown): value is [] | PlainObject {
 }
 
 export function isEqual(lhs: PlainObject, rhs: PlainObject) {
-  // return lhs !== rhs;
-
   if (Object.keys(lhs).length !== Object.keys(rhs).length) {
     return false;
   }
@@ -76,5 +74,3 @@ export function isEqual(lhs: PlainObject, rhs: PlainObject) {
 
   return true;
 }
-
-console.log(isEqual({a: 'as'}, {a: 'as'}));

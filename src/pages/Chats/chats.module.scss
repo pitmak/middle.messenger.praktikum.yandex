@@ -32,17 +32,8 @@
 .main-area {
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
   height: 100%;
-}
-
-.chat-caption {
-  height: 52px;
-  border-bottom: var(--light-grey-border) 1px solid;
-}
-
-.chat-messages {
-  flex-grow: 1;
+  width: 100%;
 }
 
 .new-message {

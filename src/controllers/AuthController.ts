@@ -1,6 +1,7 @@
 import API, {AuthAPI, SigninData, SignupData} from '../api/AuthAPI';
 import store from '../utils/Store';
 import router, {Routes} from '../utils/Router';
+import MessagesController from './MessagesController';
 
 export class AuthController {
   private readonly api: AuthAPI;
@@ -12,6 +13,8 @@ export class AuthController {
   async signin(data: SigninData) {
     try {
       await this.api.signin(data);
+
+      await this.fetchUser();
 
       store.set('userIsSignedIn', true);
 
@@ -43,6 +46,8 @@ export class AuthController {
 
   async logout() {
     try {
+      MessagesController.closeAll();
+
       await this.api.logout();
 
       store.set('userIsSignedIn', false);

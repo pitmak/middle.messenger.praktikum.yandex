@@ -6,11 +6,11 @@ import img from '../../img/noavatar.png';
 import UserController from '../../controllers/UserController';
 import AuthController from '../../controllers/AuthController';
 import Router, {Routes} from '../../utils/Router';
-import {withStore} from '../../utils/Store';
 import {User} from '../../api/AuthAPI';
 import Block from '../../utils/Block';
 import getFormData from '../../utils/GetFormData';
 import {isEqual} from '../../utils/Helpers';
+import {withUser} from "../../hocs/withUser";
 
 class EditDataPageBase extends Block<User> {
   init() {
@@ -94,7 +94,5 @@ class EditDataPageBase extends Block<User> {
     return false;
   }
 }
-
-const withUser = withStore((state) => ({...state.user}));
 
 export const EditDataPage = withUser(EditDataPageBase);

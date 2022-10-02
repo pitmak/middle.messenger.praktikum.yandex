@@ -14,11 +14,6 @@ interface ChatsListProps {
 }
 
 class ChatsListBase extends Block<ChatsListProps> {
-
-  // protected init() {
-  //   this.children.chats = this.createChats(this.props);
-  // }
-
   protected componentDidUpdate(oldProps: ChatsListProps, newProps: ChatsListProps): boolean {
     if (isEqual(oldProps, newProps)) {
       return false;

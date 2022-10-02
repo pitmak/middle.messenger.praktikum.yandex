@@ -1,5 +1,5 @@
 import Block from '../../utils/Block';
-import { PropsWithRouter, withRouter } from '../../hocs/withRouter';
+import {PropsWithRouter, withRouter} from '../../hocs/withRouter';
 import template from './link.hbs';
 import * as styles from './link.module.scss';
 
@@ -26,7 +26,7 @@ class BaseLink extends Block<LinkProps> {
   }
 
   render() {
-    return this.compile(template, { ...this.props, styles });
+    return this.compile(template, {...this.props, styles});
   }
 }
 

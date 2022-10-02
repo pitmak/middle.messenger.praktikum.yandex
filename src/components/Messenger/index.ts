@@ -1,12 +1,12 @@
-import MessagesController, {Message as MessageInfo} from "../../controllers/MessagesController";
-import Block from "../../utils/Block";
-import Input from "../Input";
-import ButtonRound from "../ButtonRound";
-import {isEqual} from "../../utils/Helpers";
-import {Message} from "../Message";
-import * as styles from "./messenger.module.scss";
-import template from "./messenger.hbs";
-import {withStore} from "../../utils/Store";
+import MessagesController, {Message as MessageInfo} from '../../controllers/MessagesController';
+import Block from '../../utils/Block';
+import Input from '../Input';
+import ButtonRound from '../ButtonRound';
+import {isEqual} from '../../utils/Helpers';
+import {Message} from '../Message';
+import * as styles from './messenger.module.scss';
+import template from './messenger.hbs';
+import {withStore} from '../../utils/Store';
 
 interface MessengerProps {
   selectedChat: number | undefined;
@@ -18,6 +18,7 @@ class MessengerBase extends Block<MessengerProps> {
   constructor(props: MessengerProps) {
     super(props);
   }
+
   protected init() {
     this.children.messages = this.createMessages(this.props);
 
@@ -28,15 +29,18 @@ class MessengerBase extends Block<MessengerProps> {
     });
 
     this.children.button = new ButtonRound({
-      label: 'Отправить',
+      label: '\u279c',
       events: {
         click: () => {
           const input = this.children.input as Input;
+
           const message = input.getValue();
 
           input.setValue('');
 
-          MessagesController.sendMessage(this.props.selectedChat!, message);
+          if (message !== '' && this.props.selectedChat) {
+            MessagesController.sendMessage(this.props.selectedChat, message);
+          }
         }
       }
     });
@@ -55,7 +59,7 @@ class MessengerBase extends Block<MessengerProps> {
   private createMessages(props: MessengerProps) {
     return props.messages.map(data => {
       return new Message({...data, isMine: props.userId === data.user_id });
-    })
+    });
   }
 
   protected render(): DocumentFragment {
@@ -70,14 +74,14 @@ const withSelectedChatMessages = withStore(state => {
     return {
       messages: [],
       selectedChat: undefined,
-      userId: state.user.id
+      userId: state.user?.id,
     };
   }
 
   return {
     messages: (state.messages || {})[selectedChatId] || [],
     selectedChat: state.selectedChat,
-    userId: state.user.id
+    userId: state.user?.id,
   };
 });
 

@@ -8,24 +8,11 @@
       {{{addChatButton}}}
     </div>
     <div id="chats-list" class="{{styles.chats-list}}">
-        {{{chatsList}}}
+      {{{chatsList}}}
     </div>
   </div>
   <div class="{{styles.main-area}}">
-    <div class="{{styles.chat-caption}}">
-      {{#each users}}
-        {{id}}{{login}}
-      {{/each}}
-      <span>Пользователи чата:</span>
-      {{{addUserButton}}}
-      {{{deleteUserButton}}}
-    </div>
-    <div class="{{styles.chat-messages}}">
-      {{{messenger}}}
-    </div>
-    <div class="{{styles.new-message}}">
-      {{{messageInput}}}
-      {{{messageSendButton}}}
-    </div>
+    {{{usersList}}}
+    {{{messenger}}}
   </div>
 </div>

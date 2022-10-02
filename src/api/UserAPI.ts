@@ -1,5 +1,5 @@
 import BaseAPI from './BaseAPI';
-import {User} from "./AuthAPI";
+import {User} from './AuthAPI';
 
 export interface ChangeUserData {
   first_name: string;
@@ -9,17 +9,6 @@ export interface ChangeUserData {
   email: string;
   phone: string;
 }
-
-// export interface GetUserData {
-//   id: number;
-//   first_name: string;
-//   second_name: string;
-//   display_name: string;
-//   login: string;
-//   email: string;
-//   phone: string;
-//   avatar: string;
-// }
 
 export interface PasswordRequest {
   oldPassword: string;
