@@ -1,0 +1,10 @@
+.buttonround {
+  border: none;
+  cursor: pointer;
+  color: var(--button-text);
+  background: var(--button-background);
+  height: 27px;
+  width: 27px;
+  border-radius: 50%;
+  padding: 0;
+}

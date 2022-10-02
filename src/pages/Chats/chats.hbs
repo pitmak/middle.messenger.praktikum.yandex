@@ -1,25 +1,31 @@
 <div class="{{styles.chats}}">
   <div class="{{styles.left-side}}">
     <div class="{{styles.profile-head}}">
-      Профиль >
+      {{{profileLink}}}
     </div>
     <div class="{{styles.search-head}}">
-      поиск
+      <span>Чаты:</span>
+      {{{addChatButton}}}
     </div>
-    <div class="{{styles.chats-list}}">
-      список чатов
+    <div id="chats-list" class="{{styles.chats-list}}">
+        {{{chatsList}}}
     </div>
   </div>
   <div class="{{styles.main-area}}">
     <div class="{{styles.chat-caption}}">
-      Заголовок чата
+      {{#each users}}
+        {{id}}{{login}}
+      {{/each}}
+      <span>Пользователи чата:</span>
+      {{{addUserButton}}}
+      {{{deleteUserButton}}}
     </div>
     <div class="{{styles.chat-messages}}">
-      сообщения чата
+      {{{messenger}}}
     </div>
     <div class="{{styles.new-message}}">
       {{{messageInput}}}
-      {{{button}}}
+      {{{messageSendButton}}}
     </div>
   </div>
 </div>

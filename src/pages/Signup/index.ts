@@ -1,21 +1,15 @@
-import template from './signin.hbs';
+import template from './signup.hbs';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
-import FormPage from '../../components/Form';
+import AuthController from '../../controllers/AuthController';
+import {SignupData} from '../../api/AuthAPI';
+import Link from '../../components/Link';
+import {Routes} from '../../utils/Router';
+import Block from '../../utils/Block';
+import getFormData from '../../utils/GetFormData';
 
-interface SigninPageProps {
-  title: string;
-}
-
-export default class SigninPage extends FormPage<SigninPageProps> {
+export default class SignupPage extends Block {
   init() {
-    this.children.button = new Button({
-      label: 'Зарегистрироваться',
-      events: {
-        click: this.onSubmit.bind(this),
-      },
-    });
-
     this.children.emailInput = new Input({
       type: 'email',
       name: 'email',
@@ -57,6 +51,25 @@ export default class SigninPage extends FormPage<SigninPageProps> {
       name: '',
       placeholder: 'Пароль (еще раз)',
     });
+
+    this.children.button = new Button({
+      label: 'Зарегистрироваться',
+      events: {
+        click: () => this.onSubmit(),
+      },
+    });
+
+    this.children.link = new Link({
+      label: 'Войти',
+      to: Routes.Index,
+    });
+  }
+
+  onSubmit() {
+    const data = getFormData(this.children);
+    if (data) {
+      AuthController.signup(data as SignupData);
+    }
   }
 
   render() {

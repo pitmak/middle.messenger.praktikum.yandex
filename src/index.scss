@@ -1,10 +1,22 @@
+:root {
+  --button-text: #fff;
+  --button-background: #3369f3;
+  --light-grey-border: #eaeaea;
+  --light-grey-background: #fbfbfb;
+  --norm-grey-background: #efefef;
+  --text-comfort-color: #1e1e1e;
+  --text-error-color: #ff2f2f;
+  --current-chat-background: #e4edfd;
+  --selected-chat-background: #cddfff;
+}
+
 body {
   display: flex;
   flex-direction: column;
   width: 100vw;
   height: 100vh;
   margin: 0;
-  font: 13px/1.5 sans-serif;
+  font: 13px/1.5 Inter, sans-serif;
 }
 
 #app {

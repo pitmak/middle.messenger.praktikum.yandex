@@ -1,5 +1,6 @@
-import { nanoid } from 'nanoid';
+import {nanoid} from 'nanoid';
 import EventBus from './EventBus';
+import {isEqual} from "./Helpers";
 
 class Block<P extends Record<string, any> = any> {
   static EVENTS = {
@@ -12,7 +13,7 @@ class Block<P extends Record<string, any> = any> {
   public id = nanoid(6);
 
   // eslint-disable-next-line no-use-before-define
-  public children: Record<string, Block>;
+  public children: Record<string, Block | Block[]>;
 
   protected props: P;
 
@@ -23,7 +24,7 @@ class Block<P extends Record<string, any> = any> {
   constructor(propsWithChildren: P) {
     const eventBus = new EventBus();
 
-    const { props, children } = this._getChildrenAndProps(propsWithChildren);
+    const {props, children} = this._getChildrenAndProps(propsWithChildren);
 
     this.children = children;
     this.props = this._makePropsProxy(props);
@@ -36,23 +37,25 @@ class Block<P extends Record<string, any> = any> {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  private _getChildrenAndProps(childrenAndProps: any) {
+  _getChildrenAndProps(childrenAndProps: P): { props: P, children: Record<string, Block | Block[]> } {
     const props: Record<string, unknown> = {};
-    const children: Record<string, Block> = {};
+    const children: Record<string, Block | Block[]> = {};
 
     Object.entries(childrenAndProps).forEach(([key, value]) => {
-      if (value instanceof Block) {
-        children[key] = value;
+      if (Array.isArray(value) && value.length > 0 && value.every(v => v instanceof Block)) {
+        children[key as string] = value;
+      } else if (value instanceof Block) {
+        children[key as string] = value;
       } else {
         props[key] = value;
       }
     });
 
-    return { props: props as P, children };
+    return {props: props as P, children};
   }
 
   private _addEvents() {
-    const { events = {} } = this.props as P & { events: Record<string, () => void> };
+    const {events = {}} = this.props as P & { events: Record<string, () => void> };
 
     Object.keys(events).forEach((eventName) => {
       this._element?.addEventListener(eventName, events[eventName]);
@@ -72,20 +75,28 @@ class Block<P extends Record<string, any> = any> {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  protected init() {}
+  protected init() {
+    return;
+  }
 
   private _componentDidMount() {
     this.componentDidMount();
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  protected componentDidMount() {}
+  protected componentDidMount() {
+    return;
+  }
 
   public dispatchComponentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
 
-    Object.values(this.children).forEach((child) => child.dispatchComponentDidMount());
+    Object.values(this.children).forEach(child => {
+      if (Array.isArray(child)) {
+        child.forEach(ch => ch.dispatchComponentDidMount());
+      } else {
+        child.dispatchComponentDidMount();
+      }
+    });
   }
 
   private _componentDidUpdate(oldProps: P, newProps: P) {
@@ -95,10 +106,11 @@ class Block<P extends Record<string, any> = any> {
   }
 
   protected componentDidUpdate(oldProps: P, newProps: P) {
-    return oldProps !== newProps;
+    return !isEqual(oldProps, newProps);
+    // return oldProps !== newProps;
   }
 
-  public setProps = (nextProps: P) => {
+  public setProps = (nextProps: Partial<P>) => {
     if (!nextProps) {
       return;
     }
@@ -119,10 +131,14 @@ class Block<P extends Record<string, any> = any> {
   }
 
   protected compile(template: (context: any) => string, context: any) {
-    const contextAndStubs = { ...context };
+    const contextAndStubs = {...context};
 
     Object.entries(this.children).forEach(([name, component]) => {
-      contextAndStubs[name] = `<div data-id="${component.id}"></div>`;
+      if (Array.isArray(component)) {
+        contextAndStubs[name] = component.map(child => `<div data-id="${child.id}"></div>`)
+      } else {
+        contextAndStubs[name] = `<div data-id="${component.id}"></div>`;
+      }
     });
 
     const html = template(contextAndStubs);
@@ -131,8 +147,7 @@ class Block<P extends Record<string, any> = any> {
 
     temp.innerHTML = html;
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    Object.entries(this.children).forEach(([_, component]) => {
+    const replaceStub = (component: Block) => {
       const stub = temp.content.querySelector(`[data-id="${component.id}"]`);
 
       if (!stub) {
@@ -141,7 +156,16 @@ class Block<P extends Record<string, any> = any> {
 
       component.getContent()?.append(...Array.from(stub.childNodes));
 
-      stub.replaceWith(component.getContent()!);
+      stub.replaceWith(component.getContent() ?? '');
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    Object.entries(this.children).forEach(([_, component]) => {
+      if (Array.isArray(component)) {
+        component.forEach(replaceStub);
+      } else {
+        replaceStub(component);
+      }
     });
 
     return temp.content;
@@ -155,7 +179,7 @@ class Block<P extends Record<string, any> = any> {
     return this.element;
   }
 
-  private _makePropsProxy(props: any) {
+  private _makePropsProxy(props: P) {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const self = this;
 
@@ -165,7 +189,7 @@ class Block<P extends Record<string, any> = any> {
         return typeof value === 'function' ? value.bind(target) : value;
       },
       set(target, prop: string, value) {
-        const oldTarget = { ...target };
+        const oldTarget = {...target};
 
         // eslint-disable-next-line no-param-reassign
         target[prop as keyof P] = value;
@@ -177,14 +201,6 @@ class Block<P extends Record<string, any> = any> {
         throw new Error('Нет доступа');
       },
     });
-  }
-
-  show() {
-    this.getContent()!.style.display = 'block';
-  }
-
-  hide() {
-    this.getContent()!.style.display = 'none';
   }
 }
 

@@ -1,0 +1,38 @@
+.chat-plate {
+  display: flex;
+  height: 53px;
+  border-bottom: var(--light-grey-border) 1px solid;
+  font-weight: bold;
+  padding: 5px;
+}
+
+.chat-plate * {
+  margin: 5px;
+}
+
+.avatar-proto {
+  width: 47px;
+  height: 47px;
+  border-radius: 23px;
+  background-color: var(--norm-grey-background);
+}
+
+.chat-plate:hover {
+  background-color: var(--current-chat-background);
+}
+
+.chat-plate-selected {
+  background-color: var(--current-chat-background);
+}
+
+.chat-plate-selected:hover {
+  background-color: var(--selected-chat-background);
+}
+
+.chat-plate button {
+  display: none;
+}
+
+.chat-plate:hover button {
+  display: block;
+}

@@ -8,6 +8,7 @@ interface InputProps {
   type?: string;
   name?: string;
   placeholder?: string;
+  value?: string;
   events?: {
     blur?: () => void;
   };
@@ -23,7 +24,7 @@ export default class Input extends Block<InputProps> {
   }
 
   render() {
-    return this.compile(template, { ...this.props, styles });
+    return this.compile(template, {...this.props, styles});
   }
 
   public isValid(): boolean {
@@ -32,14 +33,22 @@ export default class Input extends Block<InputProps> {
   }
 
   public getName(): string {
-    return this.props.name!;
+    return (this.getContent() as HTMLInputElement).name;
   }
 
   public getValue(): string {
     return (this.getContent() as HTMLInputElement).value;
   }
 
+  public setValue(value: string) {
+    return (this.element as HTMLInputElement).value = value;
+  }
+
   private validateOnBlur(): void {
-    this.isValid();
+    if (!this.isValid()) {
+      (this.getContent() as HTMLInputElement).classList.add(styles.inputinvalid);
+    } else {
+      (this.getContent() as HTMLInputElement).classList.remove(styles.inputinvalid);
+    }
   }
 }

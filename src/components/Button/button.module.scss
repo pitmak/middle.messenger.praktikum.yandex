@@ -3,8 +3,8 @@
   font-weight: bold;
   border: none;
   cursor: pointer;
-  color: #fff;
-  background: #3369f3;
+  color: var(--button-text);
+  background: var(--button-background);
   height: 37px;
   width: 280px;
   border-radius: 8px;

@@ -1,67 +1,81 @@
 import template from './profile.hbs';
 import Button from '../../components/Button';
-import Input from '../../components/Input';
-import FormPage from '../../components/Form';
 import img from '../../img/noavatar.png';
 import * as styles from './profile.module.scss';
+import AuthController from '../../controllers/AuthController';
+import {withStore} from '../../utils/Store';
+import UserController from "../../controllers/UserController";
+import Link from '../../components/Link';
+import Router, {Routes} from '../../utils/Router';
+import Block from '../../utils/Block';
+import {User} from '../../api/AuthAPI';
+import Avatar from '../../components/Avatar/avatar';
+import {isEqual} from '../../utils/Helpers';
 
-interface ProfilePageProps {
-  title: string;
-}
-
-export default class ProfilePage extends FormPage<ProfilePageProps> {
+class ProfilePageBase extends Block<User> {
   init() {
-    this.children.button = new Button({
-      label: 'Сохранить',
+    AuthController.fetchUser();
+
+    this.children.avatar = new Avatar({
+      avatar: this.props.avatar,
       events: {
-        click: this.onSubmit.bind(this),
+        click: () => this.onAvatarChange(),
       },
     });
 
-    this.children.emailInput = new Input({
-      label: 'Почта',
-      type: 'email',
-      name: 'email',
-      placeholder: 'pochta@yandex.ru',
+    this.children.editDataLink = new Link({
+      label: 'Изменить данные',
+      to: Routes.EditData,
     });
 
-    this.children.loginInput = new Input({
-      label: 'Логин',
-      type: 'text',
-      name: 'login',
-      placeholder: 'ivanovivan',
+    this.children.editPasswordLink = new Link({
+      label: 'Изменить пароль',
+      to: Routes.EditPassword,
     });
 
-    this.children.firstNameInput = new Input({
-      label: 'Имя',
-      type: 'text',
-      name: 'first_name',
-      placeholder: 'Иван',
+    this.children.logoutButton = new Button({
+      label: 'Выйти',
+      events: {
+        click: () => AuthController.logout(),
+      },
     });
 
-    this.children.secondNameInput = new Input({
-      label: 'Фамилия',
-      type: 'text',
-      name: 'second_name',
-      placeholder: 'Иванов',
+    this.children.backButton = new Button({
+      label: 'Назад',
+      events: {
+        click: () => Router.go(Routes.Messenger),
+      },
     });
+  }
 
-    this.children.displayNameInput = new Input({
-      label: 'Имя в чате',
-      type: 'text',
-      name: 'display_name',
-      placeholder: 'Иван',
-    });
+  onAvatarChange() {
+    const formData = new FormData();
 
-    this.children.phoneInput = new Input({
-      label: 'Телефон',
-      type: 'text',
-      name: 'phone',
-      placeholder: '+7 (909) 967 30 30',
-    });
+    const avatar = document.createElement('input');
+    avatar.type = 'file';
+    avatar.accept = 'image/*';
+
+    avatar.onchange = (e) => {
+      formData.append('avatar', (e.target as HTMLInputElement).files![0]);
+      UserController.avatar(formData);
+    }
+
+    avatar.click();
+  }
+
+  protected componentDidUpdate(oldProps: User, newProps: User): boolean {
+    isEqual(oldProps, newProps); // !!!
+
+    (this.children.avatar as Avatar).setProps({avatar: this.props.avatar});
+
+    return true;
   }
 
   render() {
-    return this.compile(template, { ...this.props, styles, img });
+    return this.compile(template, {...this.props, styles, img});
   }
 }
+
+const withUser = withStore((state) => ({...state.user}));
+
+export const ProfilePage = withUser(ProfilePageBase);

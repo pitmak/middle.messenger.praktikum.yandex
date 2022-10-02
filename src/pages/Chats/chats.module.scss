@@ -10,7 +10,8 @@
   flex-direction: column;
   width: 310px;
   height: 100%;
-  background-color: #fbfbfb;
+  background-color: var(--light-grey-background);
+  padding: 0 10px;
 }
 
 .profile-head {
@@ -37,7 +38,7 @@
 
 .chat-caption {
   height: 52px;
-  border-bottom: #eaeaea 1px solid;
+  border-bottom: var(--light-grey-border) 1px solid;
 }
 
 .chat-messages {
@@ -50,5 +51,5 @@
   align-items: center;
   padding: 0 5px;
   height: 52px;
-  border-top: #eaeaea 1px solid;
+  border-top: var(--light-grey-border) 1px solid;
 }

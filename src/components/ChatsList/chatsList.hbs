@@ -1,0 +1,9 @@
+<div class="{{ styles.chats-list }}">
+  {{#if isLoaded }}
+    {{#each chats}}
+      {{{this}}}
+    {{/each}}
+  {{else}}
+    Loading...
+  {{/if}}
+</div>

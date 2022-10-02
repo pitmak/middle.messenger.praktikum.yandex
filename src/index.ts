@@ -1,48 +1,33 @@
 import ErrorPage from './pages/Error';
 import LoginPage from './pages/Login';
-import Block from './utils/Block';
-import SigninPage from './pages/Signin';
-import ProfilePage from './pages/Profile';
-import ChatsPage from './pages/Chats';
+import SignupPage from './pages/Signup';
+import {ProfilePage} from './pages/Profile';
+import {ChatsPage} from './pages/Chats';
+import Router, {Routes} from './utils/Router';
+import AuthController from './controllers/AuthController';
+import store from './utils/Store';
+import {EditDataPage} from './pages/EditData';
+import EditPasswordPage from './pages/EditPassword';
 
-window.addEventListener('DOMContentLoaded', () => {
-  const root = document.querySelector('#app')!;
-  const menu = document.querySelector('#menu');
+window.addEventListener('DOMContentLoaded', async () => {
+  try {
+    await AuthController.fetchUser();
+    store.set('userIsSignedIn', true);
+  } catch (e) {
+    store.set('userIsSignedIn', false);
+  }
 
-  const pages: Record<string, Block> = {
-    chats: new ChatsPage({
-      title: 'Chats',
-    }),
-
-    error404: new ErrorPage({
-      errorCode: '404',
-      errorText: 'Не туда попали',
-      linkText: 'Назад к чатам',
-    }),
-
-    error500: new ErrorPage({
-      errorCode: '500',
-      errorText: 'Мы уже фиксим',
-      linkText: 'Назад к чатам',
-    }),
-
-    login: new LoginPage({
-      title: 'Вход',
-    }),
-
-    signin: new SigninPage({
-      title: 'Регистрация',
-    }),
-
-    profile: new ProfilePage({
-      title: 'Профиль',
-    }),
-  };
-
-  menu!.addEventListener('click', (event) => {
-    const name = (event.target as HTMLElement).id;
-    root.innerHTML = '';
-    root.append(pages[name].getContent()!);
-    pages[name].dispatchComponentDidMount();
-  });
+  // Страница, на которую по умолчанию попадает авторизаванный пользователь, регистрируется первой.
+  // Неавторизованный пользователь при попытке открыть страницу, для которой требуется авторизация,
+  // будет редиректиться на роут '/'
+  Router
+    .use(Routes.Messenger, ChatsPage, true)
+    .use(Routes.Index, LoginPage, false)
+    .use(Routes.Signup, SignupPage, false)
+    .use(Routes.Settings, ProfilePage, true)
+    .use(Routes.EditData, EditDataPage, true)
+    .use(Routes.EditPassword, EditPasswordPage, true)
+    .onError(ErrorPage)
+    .setAuthorizationChecker(() => store.getState().userIsSignedIn ?? false)
+    .start();
 });
