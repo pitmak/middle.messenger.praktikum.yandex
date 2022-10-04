@@ -1,0 +1,12 @@
+.linput {
+  display: flex;
+  justify-content: space-between;
+  width: 510px;
+  border-bottom: 1px solid var(--light-grey-border);
+}
+
+.avatar {
+  height: 130px;
+  width: 130px;
+  border-radius: 65px;
+}

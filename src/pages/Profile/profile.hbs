@@ -1,31 +1,31 @@
 <div class="form">
-  <img alt="avatar" src={{img}}>
+  {{{avatar}}}
   <div class="{{styles.linput}}">
     <label>Почта</label>
-    {{{emailInput}}}
+    <label>{{email}}</label>
   </div>
   <div class="{{styles.linput}}">
     <label>Логин</label>
-    {{{loginInput}}}
+    <label>{{login}}</label>
   </div>
   <div class="{{styles.linput}}">
     <label>Имя</label>
-    {{{firstNameInput}}}
+    <label>{{first_name}}</label>
   </div>
   <div class="{{styles.linput}}">
     <label>Фамилия</label>
-    {{{secondNameInput}}}
+    <label>{{second_name}}</label>
   </div>
   <div class="{{styles.linput}}">
     <label>Имя в чате</label>
-    {{{displayNameInput}}}
+    <label>{{display_name}}</label>
   </div>
   <div class="{{styles.linput}}">
     <label>Телефон</label>
-    {{{phoneInput}}}
+    <label>{{phone}}</label>
   </div>
-  <input name="avatar" style="display: none;">
-  <input name="oldPassword" style="display: none;">
-  <input name="newPassword" style="display: none;">
-  {{{button}}}
+  {{{editDataLink}}}
+  {{{editPasswordLink}}}
+  {{{logoutButton}}}
+  {{{backButton}}}
 </div>

@@ -11,6 +11,10 @@ const regexps: Record<string, RegExp> = {
 
   password: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{8,40}$/,
 
+  oldPassword: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{8,40}$/,
+
+  newPassword: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{8,40}$/,
+
   display_name: /^.+$/,
 
   message: /^.+$/,

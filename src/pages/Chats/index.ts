@@ -1,30 +1,49 @@
 import template from './chats.hbs';
-import Button from '../../components/Button';
-import Input from '../../components/Input';
-import FormPage from '../../components/Form';
 import * as styles from './chats.module.scss';
+import Link from '../../components/Link';
+import {Routes} from '../../utils/Router';
+import ButtonRound from '../../components/ButtonRound';
+import ChatsController from '../../controllers/ChatsController';
+import Block from '../../utils/Block';
+import {ChatsList} from '../../components/ChatsList/chatsList';
+import {Messenger} from '../../components/Messenger';
+import {UsersList} from '../../components/UsersList/usersList';
 
-interface ChatsPageProps {
-  title: string;
-}
-
-export default class ChatsPage extends FormPage<ChatsPageProps> {
+export class ChatsPage extends Block {
   init() {
-    this.children.button = new Button({
-      label: '>>>',
-      events: {
-        click: this.onSubmit.bind(this),
-      },
+    this.children.profileLink = new Link({
+      label: 'Профиль >',
+      to: Routes.Settings,
     });
 
-    this.children.messageInput = new Input({
-      type: 'text',
-      name: 'message',
-      placeholder: 'Сообщение',
+    this.children.chatsList = new ChatsList({chats: [], isLoaded: false});
+
+    this.children.usersList = new UsersList({users: []});
+
+    this.children.messenger = new Messenger({});
+    ChatsController.getChats().finally(() => {
+      (this.children.chatsList as Block).setProps({
+        isLoaded: true
+      })
+
+    });
+
+    this.children.addChatButton = new ButtonRound({
+      label: '\u271a',
+      events: {
+        click: () => this.onAddChat(),
+      },
     });
   }
 
+  onAddChat() {
+    const title = prompt('Имя нового чата:');
+    if (title) {
+      ChatsController.createChat(title);
+    }
+  }
+
   render() {
-    return this.compile(template, { ...this.props, styles });
+    return this.compile(template, {...this.props, styles});
   }
 }

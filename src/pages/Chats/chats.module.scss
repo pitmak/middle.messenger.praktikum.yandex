@@ -10,7 +10,8 @@
   flex-direction: column;
   width: 310px;
   height: 100%;
-  background-color: #fbfbfb;
+  background-color: var(--light-grey-background);
+  padding: 0 10px;
 }
 
 .profile-head {
@@ -31,17 +32,8 @@
 .main-area {
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
   height: 100%;
-}
-
-.chat-caption {
-  height: 52px;
-  border-bottom: #eaeaea 1px solid;
-}
-
-.chat-messages {
-  flex-grow: 1;
+  width: 100%;
 }
 
 .new-message {
@@ -50,5 +42,5 @@
   align-items: center;
   padding: 0 5px;
   height: 52px;
-  border-top: #eaeaea 1px solid;
+  border-top: var(--light-grey-border) 1px solid;
 }

@@ -2,14 +2,8 @@ import Block from '../../utils/Block';
 import template from './error.hbs';
 import * as styles from './error.module.scss';
 
-interface ErrorPageProps {
-  errorCode: string;
-  errorText: string;
-  linkText: string;
-}
-
-export default class ErrorPage extends Block<ErrorPageProps> {
+export default class ErrorPage extends Block {
   render() {
-    return this.compile(template, { ...this.props, styles });
+    return this.compile(template, {...this.props, styles});
   }
 }
