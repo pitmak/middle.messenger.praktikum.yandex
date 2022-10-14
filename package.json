@@ -6,7 +6,7 @@
     "build": "webpack --mode=production --node-env=production",
     "build:dev": "webpack --mode=development",
     "serve": "webpack serve",
-    "start": "node ./server.js",
+    "start": "npm run build && node ./server.js",
     "test": "mocha --require ts-node/register --require mochaSetup.js './src/**/*.test.ts'",
     "prepare": "husky install"
   },
