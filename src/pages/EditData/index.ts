@@ -1,8 +1,7 @@
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import template from './editData.hbs';
-import * as styles from './editData.module.scss';
-import img from '../../img/noavatar.png';
+import styles from './editData.module.scss';
 import UserController from '../../controllers/UserController';
 import AuthController from '../../controllers/AuthController';
 import Router, {Routes} from '../../utils/Router';
@@ -82,7 +81,7 @@ class EditDataPageBase extends Block<User> {
   }
 
   render() {
-    return this.compile(template, {...this.props, styles, img});
+    return this.compile(template, {...this.props, styles});
   }
 
   protected componentDidUpdate(oldProps: User, newProps: User): boolean {

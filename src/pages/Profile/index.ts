@@ -1,14 +1,13 @@
 import template from './profile.hbs';
 import Button from '../../components/Button';
-import img from '../../img/noavatar.png';
-import * as styles from './profile.module.scss';
+import styles from './profile.module.scss';
 import AuthController from '../../controllers/AuthController';
 import UserController from "../../controllers/UserController";
 import Link from '../../components/Link';
 import Router, {Routes} from '../../utils/Router';
 import Block from '../../utils/Block';
 import {User} from '../../api/AuthAPI';
-import Avatar from '../../components/Avatar/avatar';
+import Index from '../../components/Avatar';
 import {isEqual} from '../../utils/Helpers';
 import {withUser} from '../../hocs/withUser';
 
@@ -16,7 +15,7 @@ class ProfilePageBase extends Block<User> {
   init() {
     AuthController.fetchUser();
 
-    this.children.avatar = new Avatar({
+    this.children.avatarElem = new Index({
       avatar: this.props.avatar,
       events: {
         click: () => this.onAvatarChange(),
@@ -69,13 +68,13 @@ class ProfilePageBase extends Block<User> {
   protected componentDidUpdate(oldProps: User, newProps: User): boolean {
     isEqual(oldProps, newProps); // !!!
 
-    (this.children.avatar as Avatar).setProps({avatar: this.props.avatar});
+    (this.children.avatarElem as Index).setProps({avatar: this.props.avatar});
 
     return true;
   }
 
   render() {
-    return this.compile(template, {...this.props, styles, img});
+    return this.compile(template, {...this.props, styles});
   }
 }
 

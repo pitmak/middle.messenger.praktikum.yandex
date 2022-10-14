@@ -1,6 +1,6 @@
 import Block from '../../utils/Block';
 import template from './buttonRound.hbs';
-import * as styles from './buttonRound.module.scss';
+import styles from './buttonRound.module.scss';
 
 interface ButtonRoundProps {
   id?: number;

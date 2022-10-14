@@ -9,7 +9,7 @@ export enum Routes {
   EditPassword = '/edit-password',
 }
 
-interface BlockConstructable<P extends Record<string, any> = any> {
+export interface BlockConstructable<P extends Record<string, any> = any> {
   new(props: P): Block<P>;
 }
 
@@ -136,6 +136,14 @@ class Router {
     this.history.pushState({}, '', pathname);
 
     this._onRoute(pathname);
+  }
+
+  public back() {
+    this.history.back();
+  }
+
+  public forward() {
+    this.history.forward();
   }
 
   private getRoute(pathname: string) {

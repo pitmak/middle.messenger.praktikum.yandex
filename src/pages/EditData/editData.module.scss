@@ -1,9 +1,4 @@
-.linput {
-  display: flex;
-  justify-content: space-between;
-  width: 510px;
-  border-bottom: 1px solid var(--light-grey-border);
-}
+@import "../../common.scss";
 
 .avatar {
   height: 130px;

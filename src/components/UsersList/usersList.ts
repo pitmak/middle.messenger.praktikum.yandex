@@ -1,6 +1,6 @@
 import Block from "../../utils/Block";
 import template from "./usersList.hbs";
-import * as styles from "./usersList.module.scss";
+import styles from "./usersList.module.scss";
 import {withStore} from "../../utils/Store";
 import {User} from "../../api/AuthAPI";
 import ButtonRound from "../ButtonRound";

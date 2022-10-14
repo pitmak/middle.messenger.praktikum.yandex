@@ -2,7 +2,7 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import Router, {Routes} from '../../utils/Router';
 import template from './editPassword.hbs';
-import * as styles from './editPassword.module.scss';
+import styles from './editPassword.module.scss';
 import UserController from '../../controllers/UserController';
 import Block from '../../utils/Block';
 import getFormData from '../../utils/GetFormData';

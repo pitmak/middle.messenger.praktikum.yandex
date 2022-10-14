@@ -1,7 +1,7 @@
 import Block from '../../utils/Block';
 import {Chat} from '../../api/ChatsAPI';
 import template from './chatsList.hbs';
-import * as styles from './chatsList.module.scss';
+import styles from './chatsList.module.scss';
 import {ChatPlate} from '../ChatPlate';
 import ChatsController from '../../controllers/ChatsController';
 import {withStore} from '../../utils/Store';

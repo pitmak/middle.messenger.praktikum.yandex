@@ -1,7 +1,12 @@
 {
+  "ts-node": {
+    "files": true
+  },
   "compilerOptions": {
     "target": "es2016",
     "module": "commonjs",
+    "allowJs": true,
+    "moduleResolution": "Node",
     "declaration": false,
     "outDir": "dist",
     "esModuleInterop": true,
@@ -13,7 +18,6 @@
     "noUnusedParameters": true,
     "sourceMap": true,
     "strictNullChecks": true,
-    "plugins": [{ "name": "typescript-plugin-css-modules" }],
     "lib": [
       "ESNext",
       "DOM"

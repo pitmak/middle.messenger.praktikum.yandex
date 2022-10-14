@@ -7,6 +7,7 @@ import Link from '../../components/Link';
 import {Routes} from '../../utils/Router';
 import Block from '../../utils/Block';
 import getFormData from '../../utils/GetFormData';
+import styles from './signup.module.scss';
 
 export default class SignupPage extends Block {
   init() {
@@ -73,6 +74,6 @@ export default class SignupPage extends Block {
   }
 
   render() {
-    return this.compile(template, this.props);
+    return this.compile(template, {...this.props, styles});
   }
 }
