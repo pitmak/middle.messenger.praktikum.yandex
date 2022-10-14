@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 3000;
 const root = './dist';
 
 app.use(express.static(root));
-app.use(fallback('index.html', {root}));
+app.use(fallback('index.html', {root: root}));
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}!`);
