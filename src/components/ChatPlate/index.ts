@@ -1,6 +1,6 @@
 import Block from '../../utils/Block';
 import template from './chatPlate.hbs';
-import * as styles from './chatPlate.module.scss';
+import styles from './chatPlate.module.scss';
 import ButtonRound from '../ButtonRound';
 import {Chat} from '../../api/ChatsAPI';
 import {withStore} from '../../utils/Store';

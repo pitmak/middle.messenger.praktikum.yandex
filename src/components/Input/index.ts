@@ -1,7 +1,7 @@
 import Block from '../../utils/Block';
 import template from './input.hbs';
 import validateValueByName from '../../utils/Validate';
-import * as styles from './input.module.scss';
+import styles from './input.module.scss';
 
 interface InputProps {
   label?: string;
@@ -46,9 +46,9 @@ export default class Input extends Block<InputProps> {
 
   private validateOnBlur(): void {
     if (!this.isValid()) {
-      (this.getContent() as HTMLInputElement).classList.add(styles.inputinvalid);
+      (this.getContent() as HTMLInputElement).classList.add(styles['inputinvalid']);
     } else {
-      (this.getContent() as HTMLInputElement).classList.remove(styles.inputinvalid);
+      (this.getContent() as HTMLInputElement).classList.remove(styles['inputinvalid']);
     }
   }
 }

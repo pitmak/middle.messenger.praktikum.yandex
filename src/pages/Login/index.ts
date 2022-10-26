@@ -7,6 +7,7 @@ import AuthController from '../../controllers/AuthController';
 import {SigninData} from '../../api/AuthAPI';
 import Block from '../../utils/Block';
 import getFormData from '../../utils/GetFormData';
+import styles from './login.module.scss';
 
 export default class LoginPage extends Block {
   init() {
@@ -43,6 +44,6 @@ export default class LoginPage extends Block {
   }
 
   render() {
-    return this.compile(template, this.props);
+    return this.compile(template, {...this.props, styles});
   }
 }

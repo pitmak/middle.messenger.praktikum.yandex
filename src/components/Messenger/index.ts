@@ -4,7 +4,7 @@ import Input from '../Input';
 import ButtonRound from '../ButtonRound';
 import {isEqual} from '../../utils/Helpers';
 import {Message} from '../Message';
-import * as styles from './messenger.module.scss';
+import styles from './messenger.module.scss';
 import template from './messenger.hbs';
 import {withStore} from '../../utils/Store';
 

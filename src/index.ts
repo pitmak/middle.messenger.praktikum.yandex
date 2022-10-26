@@ -8,6 +8,7 @@ import AuthController from './controllers/AuthController';
 import store from './utils/Store';
 import {EditDataPage} from './pages/EditData';
 import EditPasswordPage from './pages/EditPassword';
+import './index.scss';
 
 window.addEventListener('DOMContentLoaded', async () => {
   try {

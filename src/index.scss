@@ -19,49 +19,10 @@ body {
   font: 13px/1.5 Inter, sans-serif;
 }
 
-#app {
+main {
   display: flex;
   flex-grow: 1;
   width: 100%;
   align-items: center;
   justify-content: center;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  padding: 30px;
-  margin: auto;
-  background: #fff;
-  align-items: center;
-  border-radius: 12px;
-  box-shadow: 0 0 6px 0 #00000024;
-}
-
-.form > * {
-  margin: 10px;
-}
-
-.underlined {
-  border-bottom: 1px solid #3369f3;
-}
-
-.text {
-  color: #1e1e1e;
-}
-
-.fs40px {
-  font-size: 40px;
-}
-
-.fs20px {
-  font-size: 20px;
-}
-
-.block-center {
-  display: flex;
-  flex-direction: column;
-  margin: auto;
-  align-items: center;
 }

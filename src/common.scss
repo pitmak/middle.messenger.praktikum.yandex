@@ -1,0 +1,22 @@
+.linput {
+  display: flex;
+  justify-content: space-between;
+  width: 510px;
+  border-bottom: 1px solid var(--light-grey-border);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 30px;
+  margin: auto;
+  background: #fff;
+  align-items: center;
+  border-radius: 12px;
+  box-shadow: 0 0 6px 0 #00000024;
+}
+
+.form > * {
+  margin: 10px;
+}

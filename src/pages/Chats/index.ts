@@ -1,5 +1,5 @@
 import template from './chats.hbs';
-import * as styles from './chats.module.scss';
+import styles from './chats.module.scss';
 import Link from '../../components/Link';
 import {Routes} from '../../utils/Router';
 import ButtonRound from '../../components/ButtonRound';
@@ -20,7 +20,7 @@ export class ChatsPage extends Block {
 
     this.children.usersList = new UsersList({users: []});
 
-    this.children.messenger = new Messenger({});
+    this.children.messenger = new Messenger({selectedChat: 0, messages: [], userId: 0});
     ChatsController.getChats().finally(() => {
       (this.children.chatsList as Block).setProps({
         isLoaded: true
